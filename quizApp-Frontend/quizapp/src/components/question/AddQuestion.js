@@ -6,7 +6,7 @@ import { createQuestion, getSubjects } from "../../utils/QuizService"
 const AddQuestion = () => {
 	const [question, setQuestionText] = useState("")
 	const [questionType, setQuestionType] = useState("single")
-	const [choices, setChoices] = useState(["A."])
+	const [choices, setChoices] = useState(["A. "])
 	const [correctAnswers, setCorrectAnswers] = useState([""])
 	const [subject, setSubject] = useState("")
 	const [newSubject, setNewSubject] = useState("")
@@ -29,7 +29,7 @@ const AddQuestion = () => {
 		const lastChoice = choices[choices.length - 1]
 		const lastChoiceLetter = lastChoice ? lastChoice.charAt(0) : String.fromCharCode(64)
 		const newChoiceLetter = String.fromCharCode(lastChoiceLetter.charCodeAt(0) + 1)
-		const newChoice = `${newChoiceLetter}.`
+		const newChoice = `${newChoiceLetter}. `
 		setChoices([...choices, newChoice])
 	}
 
@@ -62,7 +62,7 @@ const AddQuestion = () => {
 				choices,
 				correctAnswers: correctAnswers.map((answer) => {
 					const choiceLetter = answer.charAt(0).toUpperCase()
-					const choiceIndex = choiceLetter.charCodeAt(0) - 65
+					const choiceIndex = choiceLetter.charCodeAt(0) - 64
 					return choiceIndex >= 0 && choiceIndex < choices.length ? choiceLetter : null
 				}),
 
@@ -73,7 +73,7 @@ const AddQuestion = () => {
 
 			setQuestionText("")
 			setQuestionType("single")
-			setChoices([""])
+			setChoices(["A. "])
 			setCorrectAnswers([""])
 			setSubject("")
 		} catch (error) {
